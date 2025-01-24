@@ -1,0 +1,129 @@
+/* src/components/Post/CreatePost.css */
+.create-post-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .create-post-content {
+    background-color: white;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .create-post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #dbdbdb;
+  }
+  
+  .create-post-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0 8px;
+  }
+  
+  .create-post-form {
+    padding: 20px;
+  }
+  
+  .upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 20px;
+  }
+  
+  .upload-icon {
+    color: #262626;
+    margin-bottom: 16px;
+  }
+  
+  .select-button {
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .preview-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .image-preview {
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  
+  .caption-input {
+    width: 100%;
+    min-height: 100px;
+    padding: 8px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: inherit;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .cancel-button {
+    padding: 7px 16px;
+    background: none;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .share-button {
+    padding: 7px 16px;
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .share-button:disabled {
+    background-color: #b2dffc;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: #ed4956;
+    text-align: center;
+    margin: 10px 0;
+  }

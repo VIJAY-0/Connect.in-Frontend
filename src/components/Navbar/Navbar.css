@@ -1,0 +1,190 @@
+/* src/components/Navbar/Navbar.css */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid #dbdbdb;
+    z-index: 100;
+  }
+
+  
+  .navbar-container {
+    max-width: 975px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+
+  .navbar-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #262626;
+    font-size: 20px;
+  }
+  
+
+  .navbar-logo {
+    width: 25%;
+  }
+  
+  .navbar-search input {
+    background-color: #efefef;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    width: 250px;
+  }
+  
+  .navbar-menu {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-item {
+    color: #262626;
+    text-decoration: none;
+    font-size: 20px;
+  }
+  .navbar-actions{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* src/components/Navbar/Navbar.css */
+.create-post-button {
+    background: none;
+    border: none;
+    color: #262626;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .create-post-button:hover {
+    background-color: #fafafa;
+    border-radius: 4px;
+  }
+
+
+
+
+  /* src/components/Navbar/Navbar.css */
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.nav-item {
+  color: #262626;
+  text-decoration: none;
+  font-size: 24px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  position: relative;
+}
+
+/* Friend Requests Badge */
+.friend-requests-link {
+  position: relative;
+}
+
+.requests-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ed4956;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+
+/* Profile Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.profile-pic {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  padding: 8px 0;
+  min-width: 150px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a,
+.dropdown-content button {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #262626;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dropdown-content a:hover,
+.dropdown-content button:hover {
+  background: #fafafa;
+}
+
+/* Create Post Button */
+.create-post-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 24px;
+  color: #262626;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar-search {
+      display: none;
+  }
+
+  .navbar-container {
+      padding: 10px;
+  }
+
+  .navbar-menu {
+      gap: 15px;
+  }
+}
