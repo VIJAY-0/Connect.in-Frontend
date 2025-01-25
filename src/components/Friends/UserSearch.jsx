@@ -14,7 +14,7 @@ const UserSearch = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    if (!searchQuery.trim()) return;
+    // if (!searchQuery.trim()) return;
 
     setLoading(true);
     setError(null);
@@ -53,6 +53,7 @@ const UserSearch = () => {
 
 
   const sendFriendRequest = async (userId) => {
+
     try {
       const token =localStorage.getItem('token')
       const response = await fetch(
@@ -83,6 +84,7 @@ const UserSearch = () => {
         )
       );
     } catch (err) {
+      console.log(err)
       setError(err.message);
     }
   };
@@ -116,13 +118,16 @@ const UserSearch = () => {
               <h3>{user.username}</h3>
               <p>{user.email}</p>
             </div>
+
             <button
               onClick={() => sendFriendRequest(user.id)}
-              disabled={user.requestSent}
+              disabled={user.requestSent || user.is_following || user.friend_request_sent}
               className="friend-request-btn"
             >
-              {user.requestSent ? 'Request Sent' : 'Add Friend'}
+              {console.log(user)}
+              { user.is_following ?'Friend Already' : (user.friend_request_sent ? 'Request Sent' : 'Add Friend')}
             </button>
+          
           </div>
         ))}
       </div>

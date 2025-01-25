@@ -39,7 +39,6 @@ const Profile = () => {
         throw new Error('Failed to fetch profile');
       }
 
-      
       const data = await response.json();
       console.log(data)
       setProfile(data.user);
@@ -175,7 +174,7 @@ const Profile = () => {
 
       <div className="profile-posts">
         {posts.map(post => (
-
+          
         <PostCard key = {post.id} post={post}  />
         ))}
       </div>

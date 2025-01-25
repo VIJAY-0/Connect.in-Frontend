@@ -39,7 +39,7 @@ const FriendRequests = () => {
     const handleRequest = async (requestId, action) => {
         try {
             const response = await fetch(
-                `http://localhost:8000/api/friends/request/handle/${requestId}/`,
+                `${API_BASE_URL}/api/friends/request/handle/${requestId}/`,
                 {
                     method: 'POST',
                     headers: {

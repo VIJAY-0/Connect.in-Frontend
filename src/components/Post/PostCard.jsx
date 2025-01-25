@@ -62,6 +62,7 @@ const PostCard = ({ post: initialPost }) => {
                 postId={post.id}
                 onCommentLike={handleCommentLike}
             />
+            
         </div>
     );
 };

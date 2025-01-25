@@ -15,7 +15,7 @@ const Feed = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}api/posts/`, {
+      const response = await fetch(`${API_BASE_URL}api/feed/`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

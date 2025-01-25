@@ -9,7 +9,7 @@ import UserSearch from './components/Friends/UserSearch';
 import FriendsList from './components/Friends/FriendsList';
 import FriendRequests from './components/Friends/FriendRequests';
 import FriendProfile from './components/Profile/FriendsProfile';
-
+import Feed from './components/Feed/Feed';
 
 function App() {
   const { user } = useAuth();
@@ -36,7 +36,7 @@ function App() {
           />
           <Route 
             path="/" 
-            element={user ? <div>Home Feed</div> : <Navigate to="/login" />} 
+            element={user ? <Feed/> : <Navigate to="/login" />} 
           />
 
            <Route 
