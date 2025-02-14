@@ -1,20 +1,25 @@
-// src/components/Profile/Profile.jsx
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './Profile.css';
 import { API_BASE_URL } from '../../a_VARIABLES/const';
-
-import PostCard from  './../Post/PostCard'
+import PostCard from './../Post/PostCard';
+import MediaGrid from '../MediaGrid/MediaGrid';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import WallPopup from './WallPopup/WallPopup';
+import WallsCarousel from './WallCarousel/WallsCarousel';
 
 const Profile = () => {
   const { username } = useParams();
   const { user: currentUser } = useAuth();
-  const navigate = useNavigate();
-  
+
   const [profile, setProfile] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [walls, setWalls] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
+  const [isWallPopupOpen, setIsWallPopupOpen] = useState(false);
+  // const [newWallData, setNewWallData] = useState({ name: '', thumbnail: null, images: [] });
   const [editData, setEditData] = useState({
     bio: '',
     profile_picture: null
@@ -40,9 +45,9 @@ const Profile = () => {
       }
 
       const data = await response.json();
-      console.log(data)
       setProfile(data.user);
       setPosts(data.posts);
+      setWalls(data.walls || []);
       setEditData({ bio: data.user.bio });
     } catch (err) {
       setError(err.message);
@@ -51,47 +56,36 @@ const Profile = () => {
     }
   };
 
-  const handleFollow = async () => {
-    try {
-      const response = await fetch(`${API_BASE_URL}api/profile/${username}/follow/`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to follow/unfollow');
-      }
-
-      fetchProfile();
-    } catch (err) {
-      setError(err.message);
-    }
+  const handleWallClick = (wallId) => {
+    navigate(`/wall/${wallId}`);
   };
 
-  const handleEditSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('bio', editData.bio);
-    if (editData.profile_picture) {
-      formData.append('profile_picture', editData.profile_picture);
-    }
+  const handleCreateWall = async (data) => {
+    console.log("onclick happened")
+    console.log(data)
+  try {
+      console.log(data)
+      // setNewWallData(data)
+      // console.log(newWallData)
+      const formData = new FormData();
+      formData.append('name', data.name);
+      if (data.thumbnail) formData.append('thumbnail', data.thumbnail);
+      data.images.forEach((image, index) => formData.append(`images[${index}]`, image));
 
-    try {
-      const response = await fetch(`${API_BASE_URL}api/profile/${username}/`, {
-        method: 'PUT',
+      console.log(formData)
+      const response = await fetch(`${API_BASE_URL}api/createwall/`, {
+        method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: formData
       });
-
+      
       if (!response.ok) {
-        throw new Error('Failed to update profile');
+        throw new Error('Failed to create wall');
       }
 
-      setIsEditing(false);
+      setIsWallPopupOpen(false);
       fetchProfile();
     } catch (err) {
       setError(err.message);
@@ -172,11 +166,14 @@ const Profile = () => {
         </div>
       </div>
 
+      <button className="add-wall-btn" onClick={() => setIsWallPopupOpen(true)}>Add New Wall</button>
+      {isWallPopupOpen && <WallPopup onClose={() => setIsWallPopupOpen(false)} onCreate={handleCreateWall}/>}
+      
+
+      <WallsCarousel walls ={walls}/>
+
       <div className="profile-posts">
-        {posts.map(post => (
-          
-        <PostCard key = {post.id} post={post}  />
-        ))}
+        <MediaGrid posts={posts} />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 // src/components/Profile/FriendProfile.jsx
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams , useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './Profile.css';
 import { API_BASE_URL } from '../../a_VARIABLES/const';
@@ -9,10 +9,16 @@ import Comments from '../Post/Comments';
 import PostActions from '../Post/PostActions';
 import PostCard from '../Post/PostCard';
 
+import Wall from './../Wall/Wall'
+import MediaGrid from '../MediaGrid/MediaGrid';
+
+
 const FriendProfile = () => {
     const { username } = useParams();
     const { token } = useAuth();
+    const navigate = useNavigate();
     const [profile, setProfile] = useState(null);
+    const [walls, setWalls] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -34,6 +40,8 @@ const FriendProfile = () => {
             
             if (response.ok) {
                 setProfile(data);
+                setWalls(data.walls)
+                console.log(data)
             } else {
                 throw new Error(data.error);
             }
@@ -43,6 +51,10 @@ const FriendProfile = () => {
             setLoading(false);
         }
     };
+
+    const handleWallClick = (wallId) => {
+        navigate(`/wall/${wallId}`);
+      };
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div className="error">{error}</div>;
@@ -80,16 +92,23 @@ const FriendProfile = () => {
                 </div>
             </div>
 
-            <div className="profile-posts">
-                {profile.posts.map(post => (
-                
-                <PostCard key = {post.id} post={post}  />
-
-                ))}
 
 
+    <div className="walls-container">
+    <h2 className="walls-heading">Walls</h2>
+    <div id="walls" className="walls-carousel">
+      {walls.map((wall) => (
+        <div key={wall.id} className="wall-item" onClick={() => handleWallClick(wall.id)}>
+          <img src={wall.thumbnails || "/default-wall.png"} alt={wall.name} />
+          <p>{wall.name}</p>
+        </div>
+      ))}
+    </div>
+  </div>
 
-            </div>
+      {/* <div className="profile-posts">
+        <MediaGrid posts={posts} />
+      </div> */}
 
         </div>
     );

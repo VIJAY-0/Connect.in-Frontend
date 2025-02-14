@@ -1,0 +1,81 @@
+/* General Container */
+.walls-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .walls-heading {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  /* Carousel Wrapper */
+  .walls-carousel {
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    position: relative;
+    scrollbar-width: none; /* Hide scrollbar (Firefox) */
+    -ms-overflow-style: none; /* Hide scrollbar (IE/Edge) */
+  }
+  
+  /* Wall Items */
+  .wall-item {
+    flex: 0 0 auto;
+    width: 220px;
+    height: 150px;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    scroll-snap-align: start;
+  }
+  
+  .wall-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .wall-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .wall-item:hover img {
+    opacity: 0.85;
+  }
+  
+  /* Wall Item Text Overlay */
+  .wall-item p {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  
+  .wall-item:hover p {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  

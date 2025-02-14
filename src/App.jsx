@@ -10,7 +10,7 @@ import FriendsList from './components/Friends/FriendsList';
 import FriendRequests from './components/Friends/FriendRequests';
 import FriendProfile from './components/Profile/FriendsProfile';
 import Feed from './components/Feed/Feed';
-
+import Wall from './components/Wall/Wall'
 function App() {
   const { user } = useAuth();
 
@@ -56,6 +56,10 @@ function App() {
           <Route 
             path="/:username" 
             element={user ? <Profile /> : <Navigate to="/login" />} 
+          />
+          <Route 
+            path="/wall/:wallId" 
+            element={user ? <Wall /> : <Navigate to="/login" />} 
           />
 
         </Routes>

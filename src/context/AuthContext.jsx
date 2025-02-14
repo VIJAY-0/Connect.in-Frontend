@@ -5,18 +5,13 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
 
-    console.log("AutProvider\n")
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const token =localStorage.getItem('token')
     useEffect(() => {
-        console.log("AutProvider | useEffect:\n")
         // Check if user is logged in on component mount
         const storedUser = localStorage.getItem('user');
         const token = localStorage.getItem('token');
-        console.log("StoredUser: ",storedUser)
-        console.log("token: ", token)
-        
         if (storedUser && token) {
             setUser(JSON.parse(storedUser));
         }
@@ -26,7 +21,6 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = (userData, token) => {
-        console.log('Login called with:', { userData, token }); // Debug log        
         setUser(userData);
         localStorage.setItem('user', JSON.stringify(userData));
         localStorage.setItem('token', token);

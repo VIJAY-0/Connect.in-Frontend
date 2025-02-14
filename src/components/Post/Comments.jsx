@@ -44,7 +44,7 @@ const Comments = ({ comments, postId, onCommentLike }) => {
             {comments.slice(0, visibleComments).map(comment => (
                 <div key={comment.id} className="comment">
                     <div className="comment-content">
-                        <span className="username">{comment.user.username}</span>
+                        <span className="username">{comment.user.username}{": "}</span> 
                         <span className="text">{comment.text}</span>
                     </div>
                     <div className="comment-actions">

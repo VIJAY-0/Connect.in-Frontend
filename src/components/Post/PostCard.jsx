@@ -45,7 +45,7 @@ const PostCard = ({ post: initialPost }) => {
 
             {post.caption && (
                 <div className="post-caption">
-                    <span className="username">{post.user.username}</span>
+                    <span className="username">{post.user.username}{": "}</span>
                     <span className="caption">{post.caption}</span>
                 </div>
             )}

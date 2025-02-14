@@ -61,28 +61,52 @@ const PostActions = ({ post, onLikeUpdate, onCommentAdd }) => {
         }
     };
 
+
+
+    <div className="reactions-section">
+    <h3>Reactions</h3>
+    <div className="reaction-buttons">
+      <button className="reaction-btn">
+        👍 Like ({post.likes_count})
+      </button>
+      {/* <button className="reaction-btn">
+        ❤️ Love ({post.reactions.love})
+      </button>
+      <button className="reaction-btn">
+        😮 Wow ({post.reactions.wow})
+      </button> */}
+    </div>
+  </div>
+
     return (
         <div className="post-actions">
-            <div className="action-buttons">
+
+
+            <div className="reaction-buttons">
                 <button 
                     onClick={handleLike}
                     className={`like-button ${post.is_liked ? 'liked' : ''}`}
                 >
                     <i className={`fas fa-heart ${post.is_liked ? 'liked' : ''}`}></i>
                 </button>
+                <div className="likes-count">
+                {post.likes_count} likes
+            </div>
+            </div>
+
+            <div className="reaction-buttons">
                 <button className="comment-button">
                     <i className="fas fa-comment"></i>
                 </button>
             </div>
-            
-            <div className="likes-count">
-                {post.likes_count} likes
-            </div>
 
-            <form onSubmit={handleComment} className="comment-form">
+            
+        
+
+            <form onSubmit={handleComment} className="add-remark">
                 <input
                     type="text"
-                    placeholder="Add a comment..."
+                    placeholder="Add a remark..."
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                     disabled={loading}

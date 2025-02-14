@@ -67,7 +67,7 @@ const Register = () => {
   return (
     <div className="auth-container">
       <div className="auth-box">
-      <h1 className="auth-title"> <img src="public/Connections/1.png" width="50%" alt="" /> Connect.in</h1>
+      <h1 className="auth-title"> <img src="public/Circles/1.jpg" width="50%" alt="" /> Circles</h1>
         <form onSubmit={handleSubmit} className="auth-form">
           <input
             type="email"
